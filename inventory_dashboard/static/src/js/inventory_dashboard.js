@@ -10,7 +10,6 @@ const { Component, onWillStart, useState } = owl
 
 export class InventoryDashboard extends Component {
     // to load the initial datas
-    setup() {
         this.orm = useService("orm")
         this.useAction = useService('action')
         this.state = useState({

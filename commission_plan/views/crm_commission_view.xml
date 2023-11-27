@@ -62,7 +62,10 @@
                                 <field name="rate"/>
                             </tree>
                         </field>
-
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
 
         <record id="action_commission_plan" model="ir.actions.act_window">
