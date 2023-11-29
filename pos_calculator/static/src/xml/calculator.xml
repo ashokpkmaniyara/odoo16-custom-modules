@@ -1,0 +1,70 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="CalculatorPopup" owl="1">
+        <Draggable>
+            <div class="popup popup-number" style="height:500px;">
+                <header class="title drag-handle">
+                    <t t-esc="props.Title"/>
+                </header>
+                <div>
+                    <input t-model="state.user_input" readonly="1"/>
+                </div>
+                <div class="popup-numpad">
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('1')">1</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('2')">2</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('3')">3</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('+')">+</button>
+                    <br/>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('4')">4</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('5')">5</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('6')">6</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('-')">-</button>
+                    <br/>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('7')">7</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('8')">8</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('9')">9</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('*')">*</button>
+                    <br/>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('0')">0</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('.')">.</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('%')">%</button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('/')">/</button>
+                    <br/>
+                    <button class="input-button numpad-char"
+                            t-on-mousedown.prevent="() => this.sendInput('C')">C</button>
+                    <button class="input-button numpad-backspace"
+                            t-on-mousedown.prevent="() => this.sendInput('Backspace')">
+                        <img style="pointer-events: none;"
+                             src="/point_of_sale/static/src/img/backspace.png"
+                             width="24" height="21" alt="Backspace"/>
+                    </button>
+                    <button class="input-button number-char"
+                            t-on-mousedown.prevent="() => this.sendInput('=')">=</button>
+                </div>
+                <footer class="footer centered">
+                    <div class="button cancel" t-on-mousedown.prevent="cancel">
+                        <t t-esc="props.cancelKey"/>
+                    </div>
+                </footer>
+            </div>
+        </Draggable>
+    </t>
+</templates>
+
+
+

@@ -13,4 +13,5 @@
             'float_to_int_widget/static/src/xml/field_to_int.xml',
         ],
     },
+    "license": "LGPL-3",
 }

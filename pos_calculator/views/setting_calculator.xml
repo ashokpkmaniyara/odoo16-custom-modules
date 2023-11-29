@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!--view for combo product in product template form-->
+    <record id="virtual_calculator_view_form" model="ir.ui.view">
+        <field name="name">virtual.calculator.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id"
+               ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='pos_inventory_section']" position="after">
+                <h2>Others</h2>
+                <div class="row mt16 o_settings_container"
+                     id="pos_others_section">
+                    <div class="col-12 col-lg-6 o_setting_box"
+                         id="virtual_calculator_setting"
+                         title="virtual calculator for simple calculation in pos">
+                        <div class="o_setting_left_pane">
+                            <field name="virtual_calculator"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="virtual_calculator" string="Virtual Calculator"/>
+                            <div class="text-muted">
+                                Use a virtual calculator for instant calculations.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

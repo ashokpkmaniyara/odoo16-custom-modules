@@ -84,6 +84,7 @@ class PropertyTags(models.Model):
 
 class PropertyOffer(models.Model):
     _name = "estate.property.offer"
+    _description = 'Estate property offer'
 
     price = fields.Float()
     status = fields.Selection(string="Status",

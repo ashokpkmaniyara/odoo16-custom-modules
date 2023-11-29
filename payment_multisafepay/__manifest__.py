@@ -15,5 +15,6 @@
         'views/payment_provider_view.xml',
         'data/payment_provider_data.xml'
     ],
+    "license": "LGPL-3",
 
 }
