@@ -9,6 +9,7 @@ import { ChartRenderer } from "./chart_renderer"
 const { Component, onWillStart, useState } = owl
 
 export class InventoryDashboard extends Component {
+    setup(){
     // to load the initial datas
         this.orm = useService("orm")
         this.useAction = useService('action')
@@ -70,8 +71,6 @@ export class InventoryDashboard extends Component {
     async getChartData(chartTitle, apiMethod, chartLabel, domain) {
         this.state.primaryChartTitle = chartTitle
         const result = await this.orm.call("inventory.dashboard", apiMethod, domain)
-        console.log(result)
-        console.log(result.data)
         this.state.ChartConfig = {
             id: "main_chart",
             data: {

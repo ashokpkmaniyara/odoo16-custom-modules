@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="limited_access_users_project_rule" model="ir.rule">
+        <field name="name">View Limited Projects</field>
+        <field name="model_id" ref="model_project_project"/>
+        <field name="domain_force">[('access_limited_user_ids', 'in',
+            user.id)]
+        </field>
+        <field name="groups"
+               eval="[(4, ref('restrict_project_and_task.group_view_limited_projects_and_tasks'))]"/>
+    </record>
+
+    <record id="limited_access_users_task_rule" model="ir.rule">
+        <field name="name">Limited Access Task</field>
+        <field name="model_id" ref="model_project_task"/>
+        <field name="domain_force">[('access_limited_user_ids', 'in',
+            user.id)]
+        </field>
+        <field name="groups"
+               eval="[(4, ref('restrict_project_and_task.group_view_limited_projects_and_tasks'))]"/>
+    </record>
+</odoo>

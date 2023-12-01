@@ -16,7 +16,6 @@ class ComboProductPopup extends AbstractAwaitablePopup {
     confirm() {
         // Filter out the selected products
         const selectedProducts = this.props.products.filter(product => product.combo_selected);
-        console.log('aaaa',this.props.productsWithoutComboRequired[0]['combo_quantity'])
         // Trigger the addToOrderLine event for each selected product
         if(selectedProducts.length >= this.props.productsWithoutComboRequired[0]['combo_quantity']){
         selectedProducts.forEach(product => {
@@ -25,7 +24,7 @@ class ComboProductPopup extends AbstractAwaitablePopup {
 
         // Add a ribbon for selected products
             selectedProducts.forEach(product => {
-                product.label2 = "Selected"; // You can customize the ribbon text or style
+                product.label2 = "Selected";
             });
 
         this.props.productsWithComboRequired.forEach(product => {
