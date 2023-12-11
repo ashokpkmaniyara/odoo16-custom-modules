@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-name="CreateProduct" owl="1">
+		<div class="popup">
+            <header><t t-log="props"/>
+				<h3 t-if="props.products">Edit Product</h3>
+                <h3 t-else="">Create Product</h3>
+			</header>
+            <main class="body product_configurator_attributes col-lg-4 col-md-6 col-sm-12">
+				<div class="row">
+					<div class="product-detail">
+                        <span class="label">Image</span>
+                        <div t-if="props.products"><img t-if="!this.state.image" t-attf-src="data:image/png;base64,{{props.products[0]['image_1920']}}" alt="Product Image" style="width: 100px; height: 100px; object-fit: cover;"/>
+                        <img t-if="this.state.image" t-attf-src="data:image/png;base64,{{this.state.image}}" alt="Product Image" style="width: 100px; height: 100px; object-fit: cover;"/></div>
+                        <div t-else=""><img t-if="this.state.image" t-attf-src="data:image/png;base64,{{this.state.image}}" alt="Product Image" style="width: 100px; height: 100px; object-fit: cover;"/></div>
+						<input t-if="props.products &amp; !this.state.image" t-attf-value="data:image/png;base64,{{props.products[0]['image_1920']}}" class="image-uploader" type="file" name="image"
+                                    id="product-image" t-ref="image" t-on-change="updateState"/>
+                        <input t-if="this.state.image" t-attf-value="data:image/png;base64,{{this.state.image}}" class="image-uploader" type="file" name="image"
+                                    id="product-image" t-ref="image" t-on-change="updateState"/>
+                        <input t-else="" t-attf-value="data:image/png;base64,{{this.state.image}}" class="image-uploader" type="file" name="image"
+                                    id="product-image" t-ref="image" t-on-change="updateState"/>
+					</div>
+				</div>
+                <br/>
+                <div class="row">
+					<div class="product-detail">
+                        <span class="label">Name</span>
+                        <input t-if="props.products" t-attf-value="{{props.products[0]['name']}}" class="detail" t-ref="name" name="name" t-on-input="updateState"
+                               placeholder="Name"/>
+                        <input t-else="" class="detail" t-ref="name" name="name" t-on-change="updateState"
+                               placeholder="Name"/>
+                    </div>
+				</div>
+                <br/>
+                <div class="row">
+					<div class="product-detail">
+                        <span class="label">Price</span>
+                        <input t-if="props.products" t-attf-value="{{props.products[0]['lst_price']}}" class="detail" type="number" t-ref="price" t-on-input="updateState" name="price"
+                               placeholder="Price"/>
+                        <input t-else="" class="detail" type="number" t-ref="price" t-on-change="updateState" name="price"
+                               placeholder="Price"/>
+                    </div>
+				</div>
+                <br/>
+                <div class="row" t-if="!props.products">
+					<div class="product-detail">
+                        <span class="label">Cost</span>
+                        <input t-if="!props.products" class="detail" type="number" t-ref="cost" t-on-change="updateState" name="cost"
+                               placeholder="Cost"/>
+                    </div>
+				</div>
+                <br/>
+                <div class="row">
+					<div class="product-detail">
+                        <span class="label">Category</span>
+                        <select t-if="props.products" class="form-control" name="category" t-ref="category" t-on-change="updateState">
+                            <t t-foreach="props.categories" t-as="category" t-key="category.id">
+                                <option t-att-value="category.id" t-att-selected="category.id === props.products[0]['pos_categ_id'][0]">
+                                    <t t-esc="category.name"/>
+                                </option>
+                            </t>
+                        </select>
+                        <select t-else="" class="form-control" name="category" t-ref="category" t-on-input="updateState">
+                            <t t-foreach="props.categories" t-as="category" t-key="category.id">
+                                <option t-att-value="category.id">
+                                    <t t-esc="category.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+				</div>
+                <br/>
+			</main>
+            <footer class="footer">
+				<div class="button new-product highlight" role="img"
+                     aria-label="Add a product"
+                     t-on-click="createEditProduct"
+                     title="Add a product">
+                        <t>Confirm</t>
+				</div>
+                <div class="button cancel" t-on-click="back">
+					Cancel
+				</div>
+			</footer>
+        </div>
+    </t>
+</templates>
