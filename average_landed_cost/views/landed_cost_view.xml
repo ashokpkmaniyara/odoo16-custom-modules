@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!--view for landed cost-->
+    <record id="average_landed_cost" model="ir.ui.view">
+        <field name="name">average.landed.cost</field>
+        <field name="model">stock.landed.cost</field>
+        <field name="inherit_id"
+               ref="stock_landed_costs.view_stock_landed_cost_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='additional_costs']"
+                   position="inside"><br/><br/><br/><br/>r
+                <span class="text-primary fw-bold" style="font-size:20px">Average Landed Cost</span>
+                <field name="landed_cost_ids">
+                    <tree string="landed_cost" editable="bottom" create="0">
+                        <field name="product_id" readonly="1"/>
+                        <field name="average" readonly="1"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
