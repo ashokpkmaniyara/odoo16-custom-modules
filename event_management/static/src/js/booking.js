@@ -16,7 +16,6 @@ publicWidget.registry.portalDetails = publicWidget.Widget.extend({
            var customer = $('#customer_ids').val();
            var start_date = $('#start_date').val();
            var end_date = $('#end_date').val();
-           console.log(end_date)
            var time_duration = $('#time_duration');
            if(event_type && customer && start_date && end_date){
                     submitButton.removeAttribute('disabled');
@@ -44,7 +43,6 @@ publicWidget.registry.portalDetails = publicWidget.Widget.extend({
                     $('#time_duration').val("")
                     return false;}
                 else{$('#error_message').html("");}
-                console.log(start_date,end_date)
                 var millisecond_per_day = 24*60*60*1000;
                 time_duration = (end_date.getTime() - start_date.getTime()) / millisecond_per_day;
                 if (time_duration == 0){

@@ -38,7 +38,7 @@
                         <input t-if="props.products" t-attf-value="{{props.products[0]['lst_price']}}" class="detail" type="number" t-ref="price" t-on-input="updateState" name="price"
                                placeholder="Price"/>
                         <input t-else="" class="detail" type="number" t-ref="price" t-on-change="updateState" name="price"
-                               placeholder="Price"/>
+                               placeholder="Price"/>Peterson
                     </div>
 				</div>
                 <br/>

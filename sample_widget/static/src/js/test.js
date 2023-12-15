@@ -5,7 +5,6 @@ const { Component } = owl
 
 class BoolBadge extends Component{
     setup(){
-    console.log(this)
     const options = this.props.options || {}
         this.trueValue = options.trueValue || "Yes"
         this.trueColor = options.trueColor || "green"

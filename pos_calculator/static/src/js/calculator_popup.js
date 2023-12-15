@@ -19,12 +19,10 @@ export class CalculatorPopup extends AbstractAwaitablePopup{
         }
         else if(input=='.' && lastChar!='.'){
             const data = this.state.user_input.split(/['+','\-','/','%','*']/)
-            console.log(data)
             data.forEach(element => {
                 // Check if the element contains more than one period
                 const periodCount = element.split('.').length - 1;
                 if (periodCount < 1) {
-                    console.log('aaa');
                     this.state.user_input += input;
                 }
             });
