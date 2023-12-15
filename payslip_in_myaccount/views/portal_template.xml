@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="portal_my_payslip" name="Payslips"
+              customize_show="True" inherit_id="portal.portal_my_home"
+              priority="30">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Payslip</t>
+                <t t-set="url" t-value="'/my/payslip'"/>
+                <t t-set="placeholder_count" t-value="'payslip_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="my_payslip_portal" name="My Payslip">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Payslips</t>
+            </t>
+            <t t-if="not payslip">
+                <p>There are currently no payslips.</p>
+            </t>
+            <t t-if="payslip" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class='text-center'>Payslip Name</th>
+                        <th class='text-center'>Date From</th>
+                        <th class='text-center'>Date to</th>
+                        <th class="text-center">Reference</th>
+                    </tr>
+                </thead>
+                <t t-foreach="payslip" t-as="payslip">
+                    <tr>
+                        <td class='text-center'>
+                            <t t-out="payslip.name"/>
+                        </td>
+
+                        <td class="text-center">
+                            <span t-field="payslip.date_from"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="payslip.date_to"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="payslip.number"/>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group flex-grow-1 mb-1">
+                                <a class="fa fa-print" t-attf-href="/my/payslip/pdf/{{payslip.id}}">Print</a>
+                            </div>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

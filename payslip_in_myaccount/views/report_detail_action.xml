@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_payslip_report_detail" model="ir.actions.report">
+        <field name="name">Payslip Detail</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">payslip_in_myaccount.report_payslip_detail</field>
+        <field name="report_file">payslip_in_myaccount.report_payslip_detail</field>
+        <field name="binding_model_id" eval="0"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
