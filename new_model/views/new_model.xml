@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="new_model" model="ir.model">
+        <field name="model">x_new_model</field>
+        <field name="name">new.model</field>
+    </record>
+    <record id="fields1" model="ir.model.fields">
+        <field name="model_id">1185</field>
+        <field name="name">x_name</field>
+        <field name="field_description">Name</field>
+        <field name="ttype">char</field>
+    </record>
+    <record id="fields2" model="ir.model.fields">
+        <field name="model_id">1185</field>
+        <field name="name">x_age</field>
+        <field name="field_description">Age</field>
+        <field name="ttype">integer</field>
+    </record>
+
+    <record id="action_new_model" model="ir.actions.act_window">
+            <field name="name">New Model</field>
+            <field name="res_model">x_new_model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create</p>
+            </field>
+        </record>
+
+
+    <menuitem id="model_menu_root" name="New Model"/>
+        <menuitem id="first_menu_root" name="New Model" parent="model_menu_root" action="action_new_model"/>
+
+</odoo>
