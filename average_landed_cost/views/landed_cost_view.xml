@@ -9,7 +9,7 @@
                ref="stock_landed_costs.view_stock_landed_cost_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page[@name='additional_costs']"
-                   position="inside"><br/><br/><br/><br/>r
+                   position="inside"><br/><br/><br/><br/>
                 <span class="text-primary fw-bold" style="font-size:20px">Average Landed Cost</span>
                 <field name="landed_cost_ids">
                     <tree string="landed_cost" editable="bottom" create="0">

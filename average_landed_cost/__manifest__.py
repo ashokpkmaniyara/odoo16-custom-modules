@@ -5,7 +5,7 @@
     "author": "Ashokpk",
     "category": "Inventory",
     "description": """Average landed cost""",
-    "depends": ["stock","purchase","sale_management"],
+    "depends": ["base","stock","purchase","sale_management"],
     "data": [
         'security/ir.model.access.csv',
         'views/landed_cost_view.xml',
