@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="portal_product_return" name="Return"
+              customize_show="True" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//h2[hasclass('my-0')]" position="inside">
+
+
+            <!-- Modal -->
+            <form id="sale_return_form">
+                <div class="modal fade bd-example-modal-xl" id="returnPopup"
+                     tabindex="-1" aria-labelledby="returnPopupLabel"
+                     aria-hidden="true" role="dialog">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="returnPopupLabel">
+                                    Product Return
+                                </h5>
+                                <button type="button" class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"/>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr style="font-size:20px;">
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Return
+                                                    Quantity
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:15px;">
+                                            <t t-set="lines_to_report"
+                                               t-value="sale_order.picking_ids.move_ids.filtered(lambda x:x.product_id.type!='service' and x.picking_code == 'outgoing')"/>
+                                            <t t-set="lines_to"
+                                               t-value="sale_order.picking_ids.move_ids.filtered(lambda x:x.product_id.type!='service' and x.picking_code == 'incoming')"/>
+                                            <t t-set="total_maximum"
+                                               t-value="0"/>
+                                            <t t-foreach="lines_to_report"
+                                               t-as="line">
+                                                <t t-set="total_qty"
+                                                   t-value="0"/>
+                                                <t t-foreach="lines_to"
+                                                   t-as="incoming">
+                                                    <t t-if="line.product_id == incoming.product_id">
+                                                        <t t-set="total_qty"
+                                                           t-value="total_qty + incoming.product_uom_qty"/>
+                                                    </t>
+                                                </t>
+                                                <t t-set="maximum"
+                                                   t-value="int(line.quantity_done) - int(total_qty)"/>
+                                                <t t-set="total_maximum"
+                                                   t-value="total_maximum + maximum"/>
+                                                <tr class="return_line"
+                                                    t-if="maximum > 0">
+                                                    <td>
+                                                        <t t-esc="line.name"/>
+                                                    </td>
+                                                    <td>
+                                                        <t t-esc="line.quantity_done"/>
+                                                    </td>
+                                                    <td>
+                                                        <div class="css_quantity input-group">
+                                                            <div class="input-group-prepend">
+                                                                <a t-attf-href="#"
+                                                                   class="btn btn-link js_add_cart_json"
+                                                                   aria-label="Remove one"
+                                                                   title="Remove one">
+                                                                    <i class="fa fa-minus"/>
+                                                                </a>
+                                                            </div>
+                                                            <input type="text"
+                                                                   class="form-control quantity text-center"
+                                                                   data-min="0"
+                                                                   name="add_qty"
+                                                                   t-att-value="maximum or 1"
+                                                                   t-att-data-max="maximum"
+                                                                   t-att-data-line-id="line.id"
+                                                                   t-att-data-order-id="sale_order.id"
+                                                                   t-att-data-product-id="line.product_id.id"/>
+                                                            <div class="input-group-append">
+                                                                <a t-attf-href="#"
+                                                                   class="btn btn-link float_left js_add_cart_json"
+                                                                   aria-label="Add one"
+                                                                   title="Add one">
+                                                                    <i class="fa fa-plus"/>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close
+                                </button>
+                                <a id="submit" class="btn btn-primary">
+                                    Confirm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <a class="btn btn-secondary o_download_btn" style="float:right;margin-top:-40px;"
+               data-bs-toggle="modal" data-bs-target="#returnPopup"
+               title="Return" t-if="len(lines_to_report) > 0 and total_maximum > 0">
+                <i class="fa fa-truck"/>
+                Return
+            </a>
+        </xpath>
+    </template>
+</odoo>
